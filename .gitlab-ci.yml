@@ -15,23 +15,23 @@ cache:
     - target
 
 build:
-	stage: build
-	script:
-	- maven $MAVEN_CLI_OPTS compile
+  stage: build
+  script:
+  - maven $MAVEN_CLI_OPTS compile
 
 test:
-	stage: test
-	script:
-	- maven $MAVEN_CLI_OPTS test
+  stage: test
+  script:
+  - maven $MAVEN_CLI_OPTS test
 
 run:
-	stage: run
-	script:
-	- echo "Done"
+  stage: run
+  script:
+  - echo "Done"
 
 deploy:
-	stage: deploy
-	script:
-	- mvn $MAVEN_CLI_OPTS deploy
-	only:
-	- master
+  stage: deploy
+  script:
+  - mvn $MAVEN_CLI_OPTS deploy
+  only:
+  - master
