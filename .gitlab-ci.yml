@@ -1,0 +1,37 @@
+image: ${CI_DOCKER_REMOTE_NAME}/irhawks/maven:default
+
+stages:
+  - build
+  - test
+  - run
+  - deploy
+
+variables:
+  MAVEN_CLI_OPTS: "--batch-mode"
+
+cache:
+  paths:
+    - .m2/repository
+    - target
+
+build:
+	stage: build
+	script:
+	- maven $MAVEN_CLI_OPTS compile
+
+test:
+	stage: test
+	script:
+	- maven $MAVEN_CLI_OPTS test
+
+run:
+	stage: run
+	script:
+	- echo "Done"
+
+deploy:
+	stage: deploy
+	script:
+	- mvn $MAVEN_CLI_OPTS deploy
+	only:
+	- master
